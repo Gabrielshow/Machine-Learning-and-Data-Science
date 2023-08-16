@@ -1,5 +1,6 @@
 #pandas
 import pandas as pd
+import matplotlib.pyplot as plt
 
 #a series is a 1-dimensional array while a Dataframe is a multi-dimensional array
 
@@ -8,6 +9,7 @@ data = {'ages': [14, 18, 24, 42],
         'height': [174, 180, 175, 184]}
 
 df = pd.DataFrame(data)
+
 
 #each key is column while the value is an array representing the data for the column
 print(df)
@@ -59,3 +61,25 @@ print(df2[(df2['ages']>18) & (df2['height'] > 180)])
 #summary statistics
 print(df.describe())
 print(df['height'].describe())
+
+#grouping
+print(df['height'].value_counts())
+# value_counts() returns the frequency of the values
+
+#group by
+print(df.groupby('ages')['height'].sum())
+
+# df.plot(kind= "bar") #barplot
+# df.plot(kind='bar', stacked= True) #stacked barplot
+# df.plot(kind='barh') #horizontal bar plot
+# df.plot(kind='box') #box plot
+# df.plot(kind='hist', bins=2) #default number of bins is 7
+# df.plot(kind='area', stacked=False) #area plot
+# df.plot(kind='scatter',x='ages',y='height')
+# df.plot(kind='pie', subplots=True) #pie plot
+df.plot(kind='line', legend=True)
+plt.xlabel('Ages')
+plt.ylabel('Height')
+plt.savefig('plotformatting.png')
+plt.show()
+
